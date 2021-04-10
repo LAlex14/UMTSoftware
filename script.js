@@ -1,9 +1,11 @@
 const input = document.getElementById('input'),
     submitBtn = document.getElementById('submit'),
+    result = document.getElementById('result'),
     trueResult = document.getElementById('true'),
     falseResult = document.getElementById('false');
 
 function initiate() {
+    result.classList.remove('d-none');
     trueResult.classList.add('d-none');
     falseResult.classList.add('d-none');
 }
@@ -11,10 +13,12 @@ function initiate() {
 initiate();
 
 function showTrue() {
+    result.classList.toggle('d-none');
     trueResult.classList.toggle('d-none');
 }
 
 function showFalse() {
+    result.classList.toggle('d-none');
     falseResult.classList.toggle('d-none');
 }
 
@@ -51,17 +55,16 @@ var splitArraySameAverage = function (A) {
     }
 }
 
-// A = [2, 1, 3, 0];
-// A = [1, 2, 3, 4, 5, 6, 7, 8];
-// console.log(splitArraySameAverage(A));
-
-submitBtn.addEventListener('click', () => {
+function doIt() {
     initiate();
-    if (input.value.length > 1 && input.value.slice(-1) != ',') {
-        let array = input.value.split(",").map(el => +el);
-
-        if (splitArraySameAverage(array)) showTrue();
-        else showFalse();
+    if (input.value.length > 0) {
+        let array = input.value.replace(/[\[\]']+/g, '').replace(/,\s*$/, "").split(",").map(el => +el);
+        input.value = '[' + array.join(', ') + ']';
+        return splitArraySameAverage(array) ? showTrue() : showFalse();
     }
-    // console.log(array);
+}
+
+input.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") doIt();
 });
+submitBtn.addEventListener('click', doIt);

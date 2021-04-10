@@ -1,18 +1,39 @@
+body {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  color: #1d3f7e;
+}
+
+h2 {
+  color: #d02b28;
+}
+
 .container {
   max-width: 450px;
-}
-p {
-  margin: 1px;
 }
 
 .title {
   font-weight: bold;
+  font-size: 16px;
   padding-left: 15px;
 }
 
-#true,
-#false {
+p {
+  margin: 1px;
+}
+
+button {
+  margin-top: 1rem;
+  width: 100%;
+  font-size: 16px !important;
+}
+
+.res {
   pointer-events: none;
+}
+
+.text-muted {
+  font-size: 12px;
 }
 
 a {
